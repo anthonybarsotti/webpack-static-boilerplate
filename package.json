@@ -28,6 +28,7 @@
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
     "postcss-cssnext": "^2.7.0",
+    "postcss-discard-empty": "^2.1.0",
     "postcss-import": "^8.1.2",
     "postcss-loader": "^0.10.0",
     "postcss-reporter": "^1.4.1",

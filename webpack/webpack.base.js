@@ -6,10 +6,12 @@ const path = require('path');
 // Webpack plugins
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // Postcss plugins
 const postcssImport = require('postcss-import');
 const postcssReporter = require('postcss-reporter');
+const postcssDiscardEmpty = require('postcss-discard-empty');
 const cssnext = require('postcss-cssnext');
 
 module.exports = function(config) {
@@ -34,21 +36,33 @@ module.exports = function(config) {
           test: /\.(jpg|png|gif|svg)$/,
           loader: 'file',
           query: {
-            name: 'images/[name].[ext]',
+            name: '/assets/images/[name].[ext]',
           },
         },
       ],
     },
     postcss() {
       return [
-        postcssImport(),
+        postcssImport({
+          glob: true,
+          onImport: function (files) {
+              files.forEach(this.addDependency);
+          }.bind(this),
+        }),
         cssnext(),
         postcssReporter({
           clearMessages: true,
         }),
+        postcssDiscardEmpty(),
       ];
     },
     plugins: config.plugins.concat([
+      new CopyWebpackPlugin([
+        {
+          from: path.join(process.cwd(), 'client', 'assets'),
+          to: 'assets',
+        },
+      ]),
       new ExtractTextWebpackPlugin('[name].css', {
         allChunks: true,
       }),
