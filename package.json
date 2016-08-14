@@ -1,0 +1,38 @@
+{
+  "name": "webpack-static-boilerplate",
+  "version": "0.0.1",
+  "description": "A boilerplate for building static sites using Webpack",
+  "scripts": {
+    "prebuild": "rm -rf ./build",
+    "build": "webpack --config ./webpack/webpack.prod.js",
+    "watch": "webpack-dev-server --inline --content-base build/ --config ./webpack/webpack.dev.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anthonybarsotti/webpack-static-boilerplate.git"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "Tony Barsotti",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.22.0",
+    "postcss-cssnext": "^2.7.0",
+    "postcss-import": "^8.1.2",
+    "postcss-loader": "^0.10.0",
+    "postcss-reporter": "^1.4.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
